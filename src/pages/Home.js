@@ -32,49 +32,50 @@ function Home() {
     return cat.charAt(0).toUpperCase() + cat.slice(1);
   };
 
-  return (
-    <div>
-      <div className="container">
-        {!category ? (
-          <div className="category-grid">
-            {categories.map((cat) => (
-              <div
-                key={cat}
-                className="category-tile"
-                onClick={() => handleCategory(cat)}
-              >
-                <img
-                  src={`/images/${cat}.jpg`}
-                  alt={cat}
-                  className="category-img"
-                />
-                <div className="category-label">{formatLabel(cat)} →</div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <>
-            <SlArrowLeft onClick={() => setCategory("")} className="back-arrow" />
-            <div className="product-grid">
-              {filtered.length > 0 ? (
-                filtered.map((product) => (
-                  <ProductCard key={product._id} product={product} />
-                ))
-              ) : (
-                <p>No products found in this category.</p>
-              )}
+ return (
+  <div className="page-wrapper">
+    <div className="container">
+      {!category ? (
+        <div className="category-grid">
+          {categories.map((cat) => (
+            <div
+              key={cat}
+              className="category-tile"
+              onClick={() => handleCategory(cat)}
+            >
+              <img
+                src={`/images/${cat}.jpg`}
+                alt={cat}
+                className="category-img"
+              />
+              <div className="category-label">{formatLabel(cat)} →</div>
             </div>
-          </>
-        )}
-      </div>
-
-      {/* Footer */}
-      <footer className="footer">
-       Copyright © 2025 PV_Plates<br></br>
-       Made by Nivedita
-      </footer>
+          ))}
+        </div>
+      ) : (
+        <>
+          <SlArrowLeft onClick={() => setCategory("")} className="back-arrow" />
+          <div className="product-grid">
+            {filtered.length > 0 ? (
+              filtered.map((product) => (
+                <ProductCard key={product._id} product={product} />
+              ))
+            ) : (
+              <p>No products found in this category.</p>
+            )}
+          </div>
+        </>
+      )}
     </div>
-  );
+
+    <footer className="footer">
+      Copyright © 2025 PV_Plates<br />
+      Made by Nivedita
+    </footer>
+  </div>
+);
+
+
 }
 
 export default Home;
