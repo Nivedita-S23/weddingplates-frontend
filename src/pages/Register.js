@@ -1,8 +1,9 @@
+// src/pages/Register.js
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import "./Register.css"; // ✅ import CSS
 
-// 🔁 Replace with full backend API URL
 const API = "https://weddingplates-backend.onrender.com";
 
 function Register() {
@@ -31,8 +32,9 @@ function Register() {
   };
 
   return (
-    <div className="container">
-      <form onSubmit={handleSubmit}>
+    <div className="register-container">
+      <form className="register-form" onSubmit={handleSubmit}>
+
         <input
           type="text"
           name="name"
@@ -61,6 +63,10 @@ function Register() {
         />
 
         <button type="submit">Register</button>
+
+        <p className="login-link">
+          Already have an account? <Link to="/login">Login here</Link>
+        </p>
       </form>
     </div>
   );

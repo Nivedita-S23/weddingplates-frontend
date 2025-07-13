@@ -36,7 +36,15 @@ function Cart() {
   return (
     <div className="container">
       {cart.length === 0 ? (
-        <p>Your cart is empty.</p>
+       <img
+  src="/images/cartno.jpg"
+  alt="Empty cart"
+  style={{
+    display: "block",
+    margin: "20px auto",
+    width: "250px"
+  }}
+/>
       ) : (
         <>
           {cart.map((item, index) => (

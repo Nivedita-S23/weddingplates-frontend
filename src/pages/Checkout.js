@@ -1,8 +1,9 @@
+// src/pages/Checkout.js
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "./Checkout.css"; // ✅ Import CSS
 
-// ✅ Directly use your deployed backend URL
 const API = "https://weddingplates-backend.onrender.com";
 
 function Checkout() {
@@ -51,8 +52,9 @@ function Checkout() {
   };
 
   return (
-    <div className="container">
-      <form onSubmit={handleSubmit}>
+    <div className="checkout-container">
+      <form className="checkout-form" onSubmit={handleSubmit}>
+
         <input
           type="text"
           name="customerName"

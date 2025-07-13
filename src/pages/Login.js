@@ -1,8 +1,10 @@
+// src/pages/Login.js
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import "./Login.css"; // ⬅️ Make sure this CSS file is created
 
-const API = "https://weddingplates-backend.onrender.com"; // ✅ direct API URL
+const API = "https://weddingplates-backend.onrender.com";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -32,8 +34,8 @@ function Login() {
   };
 
   return (
-    <div className="container">
-      <form onSubmit={handleLogin}>
+    <div className="login-container">
+      <form className="login-form" onSubmit={handleLogin}>
         <input
           type="email"
           placeholder="Email"
@@ -51,11 +53,11 @@ function Login() {
         />
 
         <button type="submit">Login</button>
-      </form>
 
-      <p style={{ fontSize: "1.0rem" }}>
-        New user? <Link to="/register">Register here</Link>
-      </p>
+        <p className="register-link">
+          New user? <Link to="/register">Register here</Link>
+        </p>
+      </form>
     </div>
   );
 }
