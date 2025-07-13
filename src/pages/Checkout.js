@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "./Checkout.css"; // ✅ Import CSS
+import "./Checkout.css";
 import { SlArrowLeft } from "react-icons/sl";
 
 const API = "https://weddingplates-backend.onrender.com";
@@ -52,42 +52,56 @@ function Checkout() {
     }
   };
 
-  return (<div>
-    <SlArrowLeft onClick={() => navigate(-1)} className="back-arrow" />
-    <div className="checkout-container">
-      <form className="checkout-form" onSubmit={handleSubmit}>
+  return (
+    <div>
+      <SlArrowLeft onClick={() => navigate(-1)} className="back-arrow" />
+      <div className="checkout-container">
+        <form className="checkout-form" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="customerName"
+            placeholder="Name"
+            required
+            pattern="^[A-Za-z\s]{3,}$"
+            title="Name must be at least 3 characters and contain only letters and spaces"
+            onChange={handleChange}
+          />
 
-        <input
-          type="text"
-          name="customerName"
-          placeholder="Name"
-          required
-          onChange={handleChange}
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          required
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="phone"
-          placeholder="Contact Number"
-          required
-          onChange={handleChange}
-        />
-        <textarea
-          name="address"
-          placeholder="Address"
-          required
-          onChange={handleChange}
-        ></textarea>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            required
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+            title="Enter a valid email address"
+            onChange={handleChange}
+          />
 
-        <button type="submit">Place Order</button>
-      </form>
-    </div></div>
+          <input
+            type="text"
+            name="phone"
+            placeholder="Contact Number"
+            required
+            pattern="\d{10}"
+            title="Phone number must be exactly 10 digits"
+            onChange={handleChange}
+          />
+
+          <textarea
+            name="address"
+            placeholder="Address"
+            required
+            minLength={10}
+            maxLength={150}
+            pattern="^[A-Za-z0-9\s,.-]{10,150}$"
+            title="Address must be 10–150 characters and cannot contain symbols like < > /"
+            onChange={handleChange}
+          ></textarea>
+
+          <button type="submit">Place Order</button>
+        </form>
+      </div>
+    </div>
   );
 }
 

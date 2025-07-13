@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import "./Login.css"; // ⬅️ Make sure this CSS file is created
+import "./Login.css";
 import { SlArrowLeft } from "react-icons/sl";
 
 const API = "https://weddingplates-backend.onrender.com";
@@ -17,8 +17,8 @@ function Login() {
 
     try {
       const res = await axios.post(`${API}/api/auth/login`, {
-        email,
-        password,
+        email: email.trim(),
+        password: password.trim(),
       });
 
       const { role, name, email: userEmail } = res.data;
@@ -36,32 +36,39 @@ function Login() {
 
   return (
     <div>
-    <SlArrowLeft onClick={() => navigate(-1)} className="back-arrow" />   
-    <div className="login-container">   
-      <form className="login-form" onSubmit={handleLogin}>
-        <input
-          type="email"
-          placeholder="Email"
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+      <SlArrowLeft onClick={() => navigate(-1)} className="back-arrow" />
+      <div className="login-container">
+        <form className="login-form" onSubmit={handleLogin}>
+          <input
+            type="email"
+            placeholder="Email"
+            required
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+            title="Enter a valid email address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-        <input
-          type="password"
-          placeholder="Password"
-          required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+          <input
+            type="password"
+            placeholder="Password"
+            required
+            minLength={6}
+            maxLength={30}
+            pattern="^[A-Za-z0-9@#$%^&+=!]{6,30}$"
+            title="Password must be 6–30 characters. Allowed: letters, numbers, @#$%^&+=!"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
-        <button type="submit">Login</button>
+          <button type="submit">Login</button>
 
-        <p className="register-link">
-          New user? <Link to="/register">Register here</Link>
-        </p>
-      </form>
-    </div></div>
+          <p className="register-link">
+            New user? <Link to="/register">Register here</Link>
+          </p>
+        </form>
+      </div>
+    </div>
   );
 }
 
