@@ -54,8 +54,7 @@ function Home() {
           </div>
         ) : (
           <>
-            <SlArrowLeft onClick={() => setCategory("")} />
-
+            <SlArrowLeft onClick={() => setCategory("")} className="back-arrow" />
             <div className="product-grid">
               {filtered.length > 0 ? (
                 filtered.map((product) => (
@@ -68,6 +67,12 @@ function Home() {
           </>
         )}
       </div>
+
+      {/* Footer */}
+      <footer className="footer">
+       Copyright © 2025 PV_Plates<br></br>
+       Made by Nivedita
+      </footer>
     </div>
   );
 }
