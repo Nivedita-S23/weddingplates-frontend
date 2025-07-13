@@ -34,22 +34,6 @@ function Home() {
 
   return (
     <div>
-      <img
-  src="/images/homed.jpg"
-  alt="Home Banner"
-  style={{
-    display: "block",
-    margin: "10px auto",
-    width: "90%",             // ✅ makes it responsive to screen
-    maxWidth: "1000px",       // ✅ looks good on larger screens
-    height: "auto",           // ✅ maintains aspect ratio
-    maxHeight: "170px",       // ✅ restricts vertical size
-    objectFit: "top",       // ✅ scales image without stretching
-    borderRadius: "8px"
-  }}
-/>
-
-
       <div className="container">
         {!category ? (
           <div className="category-grid">
@@ -84,6 +68,11 @@ function Home() {
           </>
         )}
       </div>
+      <img
+        src="/images/homed.jpg"
+        alt="Home Banner"
+        className="responsive-banner"
+      />
     </div>
   );
 }
