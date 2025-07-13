@@ -1,6 +1,9 @@
+// src/pages/Login.js
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+
+const API = process.env.REACT_APP_API_URL;
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -11,7 +14,7 @@ function Login() {
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", {
+      const res = await axios.post(`${API}/api/auth/login`, {
         email,
         password,
       });
@@ -51,7 +54,7 @@ function Login() {
         <button type="submit">Login</button>
       </form>
 
-      <p style={{fontSize: "1.0rem" }}>
+      <p style={{ fontSize: "1.0rem" }}>
         New user? <Link to="/register">Register here</Link>
       </p>
     </div>

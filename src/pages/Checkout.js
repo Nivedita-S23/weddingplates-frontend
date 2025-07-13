@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+const API = process.env.REACT_APP_API_URL;
+
 function Checkout() {
   const [form, setForm] = useState({
     customerName: "",
@@ -39,29 +41,45 @@ function Checkout() {
           price: item.price,
         })),
       };
-     await axios.post("http://localhost:5000/api/orders/add", orderData);
+      await axios.post(`${API}/api/orders/add`, orderData);
       alert("Order placed successfully!");
       localStorage.removeItem("cart");
       navigate("/");
     } catch (err) {
-      alert("Error placing order: " + err.response.data.error);
+      alert("Error placing order: " + (err.response?.data?.error || err.message));
     }
   };
 
   return (
-    <div
-  className="container"
-
->
+    <div className="container">
       <form onSubmit={handleSubmit}>
-
-        <input type="text" name="customerName" placeholder="Name"required onChange={handleChange} />
-
-      
-        <input type="email" name="email" placeholder="email" required onChange={handleChange} />
-
-        <input type="text" name="phone" placeholder="Contact-number"required onChange={handleChange} />
-        <textarea name="address" placeholder="Address" required onChange={handleChange}></textarea>
+        <input
+          type="text"
+          name="customerName"
+          placeholder="Name"
+          required
+          onChange={handleChange}
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          required
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="phone"
+          placeholder="Contact Number"
+          required
+          onChange={handleChange}
+        />
+        <textarea
+          name="address"
+          placeholder="Address"
+          required
+          onChange={handleChange}
+        ></textarea>
 
         <button type="submit">Place Order</button>
       </form>

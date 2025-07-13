@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import "./ProductDetail.css"; // ⬅️ Import the CSS
+import "./ProductDetail.css";
+
+const API = process.env.REACT_APP_API_URL;
 
 function ProductDetail() {
   const { id } = useParams();
@@ -10,7 +12,7 @@ function ProductDetail() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/products/${id}`)
+      .get(`${API}/api/products/${id}`)
       .then((res) => setProduct(res.data))
       .catch((err) => {
         console.error("Error loading product:", err);
@@ -38,10 +40,7 @@ function ProductDetail() {
   return (
     <div className="product-detail-container">
       <div className="product-detail-image">
-        <img
-          src={`http://localhost:5000${product.image}`}
-          alt={product.name}
-        />
+        <img src={`${API}${product.image}`} alt={product.name} />
       </div>
       <div className="product-detail-info">
         <h2>{product.name}</h2>

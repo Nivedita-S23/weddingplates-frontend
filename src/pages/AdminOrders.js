@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+const API_BASE = process.env.REACT_APP_API_BASE;
+
 function AdminOrders() {
   const [orders, setOrders] = useState([]);
 
   const fetchOrders = () => {
-    axios.get("http://localhost:5000/api/orders")
+    axios.get(`${API_BASE}/api/orders`)
       .then((res) => setOrders(res.data))
       .catch((err) => console.error(err));
   };
@@ -15,14 +17,16 @@ function AdminOrders() {
   }, []);
 
   const markAsPaid = (id) => {
-    axios.patch(`http://localhost:5000/api/orders/${id}/mark-paid`)
-      .then(() => fetchOrders());
+    axios.patch(`${API_BASE}/api/orders/${id}/mark-paid`)
+      .then(() => fetchOrders())
+      .catch((err) => console.error(err));
   };
 
   const deleteOrder = (id) => {
     if (window.confirm("Delete this order?")) {
-      axios.delete(`http://localhost:5000/api/orders/${id}`)
-        .then(() => fetchOrders());
+      axios.delete(`${API_BASE}/api/orders/${id}`)
+        .then(() => fetchOrders())
+        .catch((err) => console.error(err));
     }
   };
 

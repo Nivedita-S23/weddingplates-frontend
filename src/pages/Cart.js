@@ -1,6 +1,7 @@
-// src/pages/Cart.js
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+const API_BASE = process.env.REACT_APP_API_BASE;
 
 function Cart() {
   const [cart, setCart] = useState([]);
@@ -40,7 +41,7 @@ function Cart() {
           {cart.map((item, index) => (
             <div key={index} className="cart-item">
               <img
-                src={`http://localhost:5000${item.image}`}
+                src={`${API_BASE}${item.image}`}
                 alt={item.name}
                 width="100"
               />
@@ -68,8 +69,9 @@ function Cart() {
             </div>
           ))}
           <div className="totaldown">
-          <h3>Total: ₹{total}</h3>
-          <button onClick={handleCheckout}>Proceed to Checkout</button></div>
+            <h3>Total: ₹{total}</h3>
+            <button onClick={handleCheckout}>Proceed to Checkout</button>
+          </div>
         </>
       )}
     </div>

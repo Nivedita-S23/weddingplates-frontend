@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+const API_BASE = process.env.REACT_APP_API_BASE;
+
 function AdminProducts() {
   const [products, setProducts] = useState([]);
   const [form, setForm] = useState({
@@ -9,12 +11,12 @@ function AdminProducts() {
     quantity: 0,
     description: "",
     image: null,
-    category: "", // Added category field
+    category: "",
   });
 
   const fetchProducts = () => {
     axios
-      .get("http://localhost:5000/api/products")
+      .get(`${API_BASE}/api/products`)
       .then((res) => setProducts(res.data))
       .catch((err) => console.error(err));
   };
@@ -43,11 +45,11 @@ function AdminProducts() {
     data.append("price", form.price);
     data.append("quantity", form.quantity);
     data.append("description", form.description);
-    data.append("category", form.category); // ✅ category added
+    data.append("category", form.category);
     data.append("image", form.image);
 
     try {
-      await axios.post("http://localhost:5000/api/products/add", data);
+      await axios.post(`${API_BASE}/api/products/add`, data);
       fetchProducts();
       alert("Product added!");
     } catch (err) {
@@ -57,7 +59,7 @@ function AdminProducts() {
 
   const markOutOfStock = async (id) => {
     try {
-      await axios.patch(`http://localhost:5000/api/products/${id}/out-of-stock`);
+      await axios.patch(`${API_BASE}/api/products/${id}/out-of-stock`);
       fetchProducts();
     } catch (err) {
       alert("Failed to mark out of stock.");
@@ -67,7 +69,7 @@ function AdminProducts() {
   const deleteProduct = async (id) => {
     if (window.confirm("Delete this product?")) {
       try {
-        await axios.delete(`http://localhost:5000/api/products/${id}`);
+        await axios.delete(`${API_BASE}/api/products/${id}`);
         fetchProducts();
       } catch (err) {
         alert("Failed to delete product.");
@@ -131,7 +133,7 @@ function AdminProducts() {
       {products.map((p) => (
         <div key={p._id} className="order-card">
           <img
-            src={`http://localhost:5000/uploads/${p.image}`}
+            src={`${API_BASE}${p.image}`}
             alt={p.name}
             width="120"
           />
