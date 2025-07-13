@@ -70,7 +70,7 @@ function Home() {
 
     <footer className="footer">
       Copyright © 2025 PV_Plates<br />
-      Made by Nivedita
+      Made by Nivedita S
     </footer>
   </div>
 );
