@@ -3,7 +3,7 @@
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 16px;
   justify-items: center;
-  margin-top: 30px;
+  margin-top: 60px;
   padding: 0 10px;
 }
 
@@ -26,24 +26,6 @@
   aspect-ratio: 1 / 1;
   object-fit: cover;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-}
-.responsive-banner {
-  display: block;
-  margin: 15px auto;
-  width: 90%;
-  max-width: 1000px;
-  height: auto;
-  max-height: 170px;
-  object-fit: top; /* "top" is not valid here */
-}
-
-/* ✅ Responsive override for smaller screens */
-@media (max-width: 500px) {
-  .responsive-banner {
-    width: 90%;
-    max-height: 130px;
-     object-fit: top;
-  }
 }
 
 .category-label {

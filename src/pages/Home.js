@@ -68,11 +68,6 @@ function Home() {
           </>
         )}
       </div>
-      <img
-        src="/images/homed.jpg"
-        alt="Home Banner"
-        className="responsive-banner"
-      />
     </div>
   );
 }
