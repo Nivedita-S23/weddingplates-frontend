@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./Checkout.css"; // ✅ Import CSS
+import { SlArrowLeft } from "react-icons/sl";
 
 const API = "https://weddingplates-backend.onrender.com";
 
@@ -51,7 +52,8 @@ function Checkout() {
     }
   };
 
-  return (
+  return (<div>
+    <SlArrowLeft onClick={() => navigate(-1)} className="back-arrow" />
     <div className="checkout-container">
       <form className="checkout-form" onSubmit={handleSubmit}>
 
@@ -85,7 +87,7 @@ function Checkout() {
 
         <button type="submit">Place Order</button>
       </form>
-    </div>
+    </div></div>
   );
 }
 

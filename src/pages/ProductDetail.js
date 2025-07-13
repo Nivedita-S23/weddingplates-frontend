@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./ProductDetail.css";
+import { SlArrowLeft } from "react-icons/sl";
 
-// ✅ Replace with your backend URL directly
+// ✅ Backend URL
 const API = "https://weddingplates-backend.onrender.com";
 
 function ProductDetail() {
   const { id } = useParams();
+  const navigate = useNavigate(); // ✅ you need this line
   const [product, setProduct] = useState(null);
   const [error, setError] = useState("");
 
@@ -39,26 +41,29 @@ function ProductDetail() {
   if (!product) return <div className="loading-message">Loading...</div>;
 
   return (
-    <div className="product-detail-container">
-      <div className="product-detail-image">
-        <img src={`${API}${product.image}`} alt={product.name} />
-      </div>
-      <div className="product-detail-info">
-        <h2>{product.name}</h2>
-        <p className="product-description">{product.description}</p>
-        <p>
-          <strong>Price:</strong> ₹{product.price}
-        </p>
-        <p>
-          <strong>Status:</strong>{" "}
-          {product.quantity > 0 ? "In Stock" : "Out of Stock"}
-        </p>
+    <div>
+      <SlArrowLeft onClick={() => navigate(-1)} className="back-arrow" />
+      <div className="product-detail-container">
+        <div className="product-detail-image">
+          <img src={`${API}${product.image}`} alt={product.name} />
+        </div>
+        <div className="product-detail-info">
+          <h2>{product.name}</h2>
+          <p className="product-description">{product.description}</p>
+          <p>
+            <strong>Price:</strong> ₹{product.price}
+          </p>
+          <p>
+            <strong>Status:</strong>{" "}
+            {product.quantity > 0 ? "In Stock" : "Out of Stock"}
+          </p>
 
-        {product.quantity > 0 ? (
-          <button onClick={handleAddToCart}>Add to Cart</button>
-        ) : (
-          <p className="out-of-stock">Out of Stock</p>
-        )}
+          {product.quantity > 0 ? (
+            <button onClick={handleAddToCart}>Add to Cart</button>
+          ) : (
+            <p className="out-of-stock">Out of Stock</p>
+          )}
+        </div>
       </div>
     </div>
   );

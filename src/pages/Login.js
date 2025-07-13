@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import "./Login.css"; // ⬅️ Make sure this CSS file is created
+import { SlArrowLeft } from "react-icons/sl";
 
 const API = "https://weddingplates-backend.onrender.com";
 
@@ -34,7 +35,9 @@ function Login() {
   };
 
   return (
-    <div className="login-container">
+    <div>
+    <SlArrowLeft onClick={() => navigate(-1)} className="back-arrow" />   
+    <div className="login-container">   
       <form className="login-form" onSubmit={handleLogin}>
         <input
           type="email"
@@ -58,7 +61,7 @@ function Login() {
           New user? <Link to="/register">Register here</Link>
         </p>
       </form>
-    </div>
+    </div></div>
   );
 }
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { SlArrowLeft } from "react-icons/sl";
 
 // ✅ Use full backend URL instead of env variable
 const API_BASE = "https://weddingplates-backend.onrender.com";
@@ -34,6 +35,8 @@ function Cart() {
   };
 
   return (
+    <div>
+     <SlArrowLeft onClick={() => navigate(-1)} className="back-arrow" />
     <div className="container">
       {cart.length === 0 ? (
        <img
@@ -83,7 +86,7 @@ function Cart() {
           </div>
         </>
       )}
-    </div>
+    </div></div>
   );
 }
 

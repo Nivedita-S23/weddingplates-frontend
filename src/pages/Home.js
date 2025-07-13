@@ -33,40 +33,57 @@ function Home() {
   };
 
   return (
-    <div className="container">
-      {!category ? (
-        <div className="category-grid">
-          {categories.map((cat) => (
-            <div
-              key={cat}
-              className="category-tile"
-              onClick={() => handleCategory(cat)}
-            >
-              <img
-                src={`/images/${cat}.jpg`}
-                alt={cat}
-                className="category-img"
-              />
-            <div className="category-label">{formatLabel(cat)} →</div>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <>
-          
+    <div>
+      <img
+  src="/images/homed.jpg"
+  alt="Home Banner"
+  style={{
+    display: "block",
+    margin: "10px auto",
+    width: "90%",             // ✅ makes it responsive to screen
+    maxWidth: "1000px",       // ✅ looks good on larger screens
+    height: "auto",           // ✅ maintains aspect ratio
+    maxHeight: "170px",       // ✅ restricts vertical size
+    objectFit: "top",       // ✅ scales image without stretching
+    borderRadius: "8px"
+  }}
+/>
+
+
+      <div className="container">
+        {!category ? (
+          <div className="category-grid">
+            {categories.map((cat) => (
+              <div
+                key={cat}
+                className="category-tile"
+                onClick={() => handleCategory(cat)}
+              >
+                <img
+                  src={`/images/${cat}.jpg`}
+                  alt={cat}
+                  className="category-img"
+                />
+                <div className="category-label">{formatLabel(cat)} →</div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <>
             <SlArrowLeft onClick={() => setCategory("")} />
 
-          <div className="product-grid">
-            {filtered.length > 0 ? (
-              filtered.map((product) => (
-                <ProductCard key={product._id} product={product} />
-              ))
-            ) : (
-              <p>No products found in this category.</p>
-            )}
-          </div>
-        </>
-      )}
+            <div className="product-grid">
+              {filtered.length > 0 ? (
+                filtered.map((product) => (
+                  <ProductCard key={product._id} product={product} />
+                ))
+              ) : (
+                <p>No products found in this category.</p>
+              )}
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 }
