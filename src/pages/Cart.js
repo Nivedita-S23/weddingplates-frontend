@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const API_BASE = process.env.REACT_APP_API_BASE;
+// ✅ Use full backend URL instead of env variable
+const API_BASE = "https://weddingplates-backend.onrender.com";
 
 function Cart() {
   const [cart, setCart] = useState([]);
@@ -41,7 +42,7 @@ function Cart() {
           {cart.map((item, index) => (
             <div key={index} className="cart-item">
               <img
-                src={`${API_BASE}${item.image}`}
+                src={`${API_BASE}${item.image}`} // ✅ fixed URL
                 alt={item.name}
                 width="100"
               />

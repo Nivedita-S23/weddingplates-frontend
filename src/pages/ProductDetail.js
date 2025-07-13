@@ -3,7 +3,8 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./ProductDetail.css";
 
-const API = process.env.REACT_APP_API_URL;
+// ✅ Replace with your backend URL directly
+const API = "https://weddingplates-backend.onrender.com";
 
 function ProductDetail() {
   const { id } = useParams();

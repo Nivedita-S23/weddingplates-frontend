@@ -1,9 +1,9 @@
-// src/pages/Checkout.js
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const API = process.env.REACT_APP_API_URL;
+// ✅ Directly use your deployed backend URL
+const API = "https://weddingplates-backend.onrender.com";
 
 function Checkout() {
   const [form, setForm] = useState({

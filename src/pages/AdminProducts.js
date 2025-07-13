@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const API_BASE = process.env.REACT_APP_API_BASE;
+// ✅ Use your deployed backend URL directly
+const API_BASE = "https://weddingplates-backend.onrender.com";
 
 function AdminProducts() {
   const [products, setProducts] = useState([]);
@@ -132,11 +133,7 @@ function AdminProducts() {
       <h3>Product List</h3>
       {products.map((p) => (
         <div key={p._id} className="order-card">
-          <img
-            src={`${API_BASE}${p.image}`}
-            alt={p.name}
-            width="120"
-          />
+          <img src={`${API_BASE}${p.image}`} alt={p.name} width="120" />
           <h4>{p.name}</h4>
           <p>Price: ₹{p.price}</p>
           <p>Quantity: {p.quantity}</p>
