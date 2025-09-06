@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-// ✅ Hardcoded API base URL
 const API_BASE = "https://weddingplates-backend.onrender.com";
 
 function AdminOrders() {
